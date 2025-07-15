@@ -4,6 +4,7 @@ from typing import List, Dict
 from services.gemini_service import get_gemini_response
 from services.exercise_analysis_service import analyze_pose_data
 from main import get_db # Import get_db from main.py
+from ..database import get_db # Import get_db from database.py
 
 router = APIRouter()
 
