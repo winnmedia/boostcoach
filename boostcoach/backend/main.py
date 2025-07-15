@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from backend.routes import user, workout_log, exercise_analysis
+from routes import user, workout_log, exercise_analysis
 from .models import Base # Import Base from models.py
 
 # Database connection URL (replace with your actual database URL or environment variable)
