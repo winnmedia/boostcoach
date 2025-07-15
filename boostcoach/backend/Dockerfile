@@ -29,10 +29,8 @@ COPY --from=builder /usr/bin/node /usr/bin/node
 COPY --from=builder /usr/bin/npm /usr/bin/npm
 
 # Copy prisma CLI binary
-COPY --from=builder /app/node_modules/prisma/build /app/node_modules/prisma/build
-COPY --from=builder /app/node_modules/prisma/lib /app/node_modules/prisma/lib
-COPY --from=builder /app/node_modules/prisma/package.json /app/node_modules/prisma/package.json
 COPY --from=builder /app/node_modules/.bin/prisma /usr/local/bin/prisma
+COPY --from=builder /app/node_modules/@prisma/engines /app/node_modules/@prisma/engines
 
 # Install Python dependencies in runtime stage
 COPY requirements.txt .
