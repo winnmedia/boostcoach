@@ -10,7 +10,7 @@ npx prisma migrate deploy
 
 # Generate Prisma Client
 echo "Generating Prisma Client..."
-npx prisma generate --url "$DATABASE_URL"
+npx prisma generate
 
 # Start Uvicorn server
 echo "Starting Uvicorn server..."
