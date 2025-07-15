@@ -27,11 +27,13 @@ COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /usr/bin/node /usr/bin/node
 COPY --from=builder /usr/bin/npm /usr/bin/npm
 COPY --from=builder /usr/bin/npx /usr/bin/npx
-COPY --from=builder /usr/bin/python /usr/bin/python # Symlink
 
 # Install Python dependencies in runtime stage
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Create python symlink in runtime stage
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 COPY . .
 COPY start.sh .
