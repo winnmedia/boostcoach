@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from backend.services import workout_log_service
-from backend.main import get_db # Import get_db from main.py
+from services import workout_log_service
+from main import get_db # Import get_db from main.py
 
 router = APIRouter()
 
