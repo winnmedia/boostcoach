@@ -16,6 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Install Prisma CLI and Node.js dependencies
 COPY package.json package-lock.json ./
 RUN npm install --verbose
+RUN npm install -g prisma
 
 # Stage 2: Runtime image
 FROM python:3.11-slim-bullseye
@@ -26,7 +27,6 @@ WORKDIR /app
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /usr/bin/node /usr/bin/node
 COPY --from=builder /usr/bin/npm /usr/bin/npm
-COPY --from=builder /usr/bin/npx /usr/bin/npx
 
 # Install Python dependencies in runtime stage
 COPY requirements.txt .

@@ -6,11 +6,11 @@ export DATABASE_URL="postgresql://postgres:yzrhKiriXKrSYAdxIdPSjNuNseQkhjAe@post
 
 # Run Prisma Migrations
 echo "Running Prisma Migrations..."
-npx prisma migrate deploy
+prisma migrate deploy
 
 # Generate Prisma Client
 echo "Generating Prisma Client..."
-PRISMA_CLIENT_ENGINE_TYPE=binary npx prisma generate --no-engine || { echo "Error: Prisma Client generation failed!"; exit 1; }
+PRISMA_CLIENT_ENGINE_TYPE=binary prisma generate --no-engine || { echo "Error: Prisma Client generation failed!"; exit 1; }
 
 # Start Uvicorn server
 echo "Starting Uvicorn server..."
