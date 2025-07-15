@@ -2,5 +2,6 @@ fastapi
 uvicorn[standard]
 python-dotenv
 google-generativeai
-prisma
+sqlalchemy
+alembic
 psycopg2-binary
