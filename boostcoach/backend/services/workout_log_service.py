@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from typing import List, Optional
-from ..models import WorkoutLog
+from models import WorkoutLog
 
 def get_all_workout_logs(db: Session):
     return db.query(WorkoutLog).all()
