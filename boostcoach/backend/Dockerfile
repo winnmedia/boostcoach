@@ -26,6 +26,7 @@ WORKDIR /app
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /usr/bin/node /usr/bin/node
 COPY --from=builder /usr/bin/npm /usr/bin/npm
+COPY --from=builder /usr/bin/npx /usr/bin/npx
 
 # Install Python dependencies in runtime stage
 COPY requirements.txt .
