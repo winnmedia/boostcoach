@@ -10,7 +10,7 @@ npx prisma migrate deploy
 
 # Generate Prisma Client
 echo "Generating Prisma Client..."
-npx prisma generate
+npx prisma generate || { echo "Error: Prisma Client generation failed!"; exit 1; }
 
 # Start Uvicorn server
 echo "Starting Uvicorn server..."
