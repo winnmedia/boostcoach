@@ -2,13 +2,15 @@
 
 set -e
 
+DATABASE_URL="postgresql://postgres:yzrhKiriXKrSYAdxIdPSjNuNseQkhjAe@postgres.railway.internal:5432/railway"
+
 # Ensure DATABASE_URL is set for Prisma
 # Railway injects DATABASE_URL, so we just need to make sure it's available to npx commands
 # If DATABASE_URL is not set, this will cause an error, which is intended.
-if [ -z "$DATABASE_URL" ]; then
-  echo "Error: DATABASE_URL environment variable is not set."
-  exit 1
-fi
+# if [ -z "$DATABASE_URL" ]; then
+#   echo "Error: DATABASE_URL environment variable is not set."
+#   exit 1
+# fi
 
 # Run Prisma Migrations
 echo "Running Prisma Migrations..."
