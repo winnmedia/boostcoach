@@ -2,11 +2,11 @@
 
 set -e
 
-DATABASE_URL="postgresql://postgres:yzrhKiriXKrSYAdxIdPSjNuNseQkhjAe@postgres.railway.internal:5432/railway"
+export DATABASE_URL="postgresql://postgres:yzrhKiriXKrSYAdxIdPSjNuNseQkhjAe@postgres.railway.internal:5432/railway"
 
 # Run Prisma Migrations
 echo "Running Prisma Migrations..."
-npx prisma migrate deploy --url "$DATABASE_URL"
+npx prisma migrate deploy
 
 # Generate Prisma Client
 echo "Generating Prisma Client..."
