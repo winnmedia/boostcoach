@@ -1,20 +1,16 @@
-from prisma import Prisma
+from sqlalchemy.orm import Session
 from typing import List, Optional
+from ..models import WorkoutLog
 
-async def get_all_workout_logs(db: Prisma):
-    logs = await db.workoutlog.find_many()
-    return logs
+def get_all_workout_logs(db: Session):
+    return db.query(WorkoutLog).all()
 
-async def get_workout_log_by_id(db: Prisma, log_id: int):
-    log = await db.workoutlog.find_unique(where={'id': log_id})
-    return log
+def get_workout_log_by_id(db: Session, log_id: int):
+    return db.query(WorkoutLog).filter(WorkoutLog.id == log_id).first()
 
-async def create_workout_log(db: Prisma, title: str, description: Optional[str], user_id: int):
-    log = await db.workoutlog.create(
-        data={
-            'title': title,
-            'description': description,
-            'userId': user_id
-        }
-    )
-    return log
+def create_workout_log(db: Session, title: str, description: Optional[str], user_id: int):
+    new_log = WorkoutLog(title=title, description=description, user_id=user_id)
+    db.add(new_log)
+    db.commit()
+    db.refresh(new_log)
+    return new_log

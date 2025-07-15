@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from typing import List, Dict
 from services.gemini_service import get_gemini_response
 from services.exercise_analysis_service import analyze_pose_data
+from sqlalchemy.orm import Session
+from ..main import get_db # Import get_db from main.py
 
 router = APIRouter()
 
@@ -11,7 +13,7 @@ class PoseData(BaseModel):
     # Add other relevant pose data fields as needed, e.g., frame_timestamp, user_id
 
 @router.post("/analyze_exercise")
-async def analyze_exercise(pose_data: PoseData):
+async def analyze_exercise(pose_data: PoseData, db: Session = Depends(get_db)):
     try:
         # 1. 포즈 데이터 분석
         analysis_result = await analyze_pose_data(pose_data.keypoints)

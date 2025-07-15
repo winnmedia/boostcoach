@@ -1,11 +1,8 @@
-from prisma import Prisma
+from sqlalchemy.orm import Session
+from ..models import User
 
-# db = Prisma() # 더 이상 여기서 직접 Prisma 인스턴스를 생성하지 않습니다.
+def get_all_users(db: Session):
+    return db.query(User).all()
 
-async def get_all_users(db: Prisma):
-    users = await db.user.find_many()
-    return users
-
-async def get_user_by_id(db: Prisma, user_id: int):
-    user = await db.user.find_unique(where={'id': user_id})
-    return user
+def get_user_by_id(db: Session, user_id: int):
+    return db.query(User).filter(User.id == user_id).first()
