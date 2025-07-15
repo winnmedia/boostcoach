@@ -7,7 +7,7 @@ from sqlalchemy import pool
 from alembic import context
 
 # add your project's directory to sys.path
-sys.path.append("/app")
+sys.path.append("/app/backend")
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -18,7 +18,7 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-from boostcoach.backend.models import Base
+from models import Base
 
 # add your model's MetaData object here
 # for 'autogenerate' support
