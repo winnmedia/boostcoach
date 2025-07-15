@@ -1,10 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict
-from services.gemini_service import get_gemini_response
-from services.exercise_analysis_service import analyze_pose_data
-from sqlalchemy.orm import Session
-from ..main import get_db # Import get_db from main.py
+from backend.services.gemini_service import get_gemini_response
+from backend.services.exercise_analysis_service import analyze_pose_data
+from backend.main import get_db # Import get_db from main.py
 
 router = APIRouter()
 
