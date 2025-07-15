@@ -13,10 +13,9 @@ RUN apt-get update && apt-get install -y curl && \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Prisma CLI and Node.js dependencies
+# Install Node.js dependencies
 COPY package.json package-lock.json ./
 RUN npm install --verbose
-RUN npm install prisma # Install prisma locally
 
 # Stage 2: Runtime image
 FROM python:3.11-slim-bullseye
@@ -27,10 +26,6 @@ WORKDIR /app
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /usr/bin/node /usr/bin/node
 COPY --from=builder /usr/bin/npm /usr/bin/npm
-
-# Copy prisma CLI binary
-COPY --from=builder /app/node_modules/.bin/prisma /usr/local/bin/prisma
-COPY --from=builder /app/node_modules/@prisma/engines /app/node_modules/@prisma/engines
 
 # Install Python dependencies in runtime stage
 COPY requirements.txt .
