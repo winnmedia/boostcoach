@@ -50,3 +50,7 @@ Thumbs.db
 
 # Gemini CLI (embedded git repository)
 gemini-cli/
+
+# Large files
+google-cloud-cli-linux-x86_64.tar.gz
+google-cloud-sdk/
