@@ -4,7 +4,8 @@ WORKDIR /app
 
 # Install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update && apt-get install -y netcat-traditional && \
+    pip install --no-cache-dir -r requirements.txt
 RUN python3 -c "import alembic"
 
 COPY alembic.ini .
