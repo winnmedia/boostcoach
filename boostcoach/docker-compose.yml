@@ -9,8 +9,7 @@ services:
       - db
     networks:
       - app_network
-
-  # frontend:
+    restart: "no"
   #   build: ./frontend
   #   ports:
   #     - '19000:19000'
