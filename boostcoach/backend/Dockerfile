@@ -14,8 +14,7 @@ COPY package.json package-lock.json ./
 RUN npm install --verbose
 
 COPY . .
+COPY start.sh .
+RUN chmod +x start.sh
 
-# Generate Prisma Client (manual execution after container start)
-# RUN npx prisma generate
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]
+CMD ["./start.sh"]
