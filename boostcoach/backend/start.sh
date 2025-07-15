@@ -6,11 +6,11 @@ export DATABASE_URL="postgresql://postgres:yzrhKiriXKrSYAdxIdPSjNuNseQkhjAe@post
 
 # Run Prisma Migrations
 echo "Running Prisma Migrations..."
-prisma migrate deploy
+PRISMA_CLI_BINARY_TARGETS=debian-openssl-1.1.x prisma migrate deploy
 
 # Generate Prisma Client
 echo "Generating Prisma Client..."
-PRISMA_CLIENT_ENGINE_TYPE=binary prisma generate --no-engine || { echo "Error: Prisma Client generation failed!"; exit 1; }
+PRISMA_CLI_BINARY_TARGETS=debian-openssl-1.1.x PRISMA_CLIENT_ENGINE_TYPE=binary prisma generate --no-engine || { echo "Error: Prisma Client generation failed!"; exit 1; }
 
 # Start Uvicorn server
 echo "Starting Uvicorn server..."
