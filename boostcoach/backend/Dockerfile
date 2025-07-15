@@ -22,13 +22,16 @@ FROM python:3.11-slim-bullseye
 
 WORKDIR /app
 
-# Copy only necessary files from builder stage
-COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+# Copy only necessary Node.js related files from builder stage
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /usr/bin/node /usr/bin/node
 COPY --from=builder /usr/bin/npm /usr/bin/npm
 COPY --from=builder /usr/bin/npx /usr/bin/npx
 COPY --from=builder /usr/bin/python /usr/bin/python # Symlink
+
+# Install Python dependencies in runtime stage
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 COPY start.sh .
