@@ -36,6 +36,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY package.json package-lock.json ./ 
 RUN npm install --production
 
+# Copy prisma CLI binary and engines
+COPY --from=builder /app/node_modules/.bin/prisma /usr/local/bin/prisma
+COPY --from=builder /app/node_modules/@prisma/engines /app/node_modules/@prisma/engines
+
+
 
 COPY . .
 COPY start.sh .
